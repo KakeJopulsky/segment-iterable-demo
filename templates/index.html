@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>title</title>
+    <!-- <script>
+        !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on","addSourceMiddleware","addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware"];analytics.factory=function(e){return function(){var t=Array.prototype.slice.call(arguments);t.unshift(e);analytics.push(t);return analytics}};for(var e=0;e<analytics.methods.length;e++){var key=analytics.methods[e];analytics[key]=analytics.factory(key)}analytics.load=function(key,e){var t=document.createElement("script");t.type="text/javascript";t.async=!0;t.src="https://cdn.segment.com/analytics.js/v1/" + key + "/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(t,n);analytics._loadOptions=e};analytics._writeKey="ZCGk1EJTvy4YZ96cGNvgnYc5zbVXVErY";analytics.SNIPPET_VERSION="4.13.2";
+        analytics.load("ZCGk1EJTvy4YZ96cGNvgnYc5zbVXVErY");
+        analytics.page();
+        }}();
+      </script> -->
+      
+    <!-- SEGMENT SNIPPET BELOW -->
+    <script>
+        !function() {
+            var analytics=window.analytics = window.analytics || [];
+            if (!analytics.initialize)
+                if(analytics.invoked)
+                    window.console && console.error && console.error("Segment snippet included twice.");
+                else {
+                    analytics.invoked = !0;
+                    analytics.methods = ["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on","addSourceMiddleware","addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware"];
+                    analytics.factory = function(e) {
+                        return function(){ 
+                            var t = Array.prototype.slice.call(arguments);
+                            t.unshift(e);
+                            analytics.push(t);
+                            return analytics
+                        }
+                    };
+                    for (var e=0; e < analytics.methods.length; e++) {
+                        var key = analytics.methods[e];
+                        analytics[key]= analytics.factory(key)
+                    }
+                    analytics.load = function(key, e) {
+                        var t = document.createElement("script");
+                        t.type="text/javascript";
+                        t.async = !0;
+                        t.src = "https://cdn.segment.com/analytics.js/v1/" + key + "/analytics.min.js";
+                        var n = document.getElementsByTagName("script")[0];
+                        n.parentNode.insertBefore(t, n);
+                        analytics._loadOptions = e
+                    };
+                    analytics._writeKey = "ZCGk1EJTvy4YZ96cGNvgnYc5zbVXVErY";
+                    analytics.SNIPPET_VERSION = "4.13.2";
+                    analytics.load("ZCGk1EJTvy4YZ96cGNvgnYc5zbVXVErY");
+                    analytics.page();
+                }
+        }();
+    </script>
+    <!-- END SEGMENT SNIPPET -->
+    <link rel="manifest" href="/manifest.json"/>
+  </head>
+  <body>
+    <form id="form" action="/profile" method="POST">
+        <label for="email">Email address:</label><br>
+        <input type="text" id="email" name="email"><br>
+        <label for="fname">First name:</label><br>
+        <input type="text" id="fname" name="fname"><br>
+        <label for="lname">Last name:</label><br>
+        <input type="text" id="lname" name="lname">
+        <button type="submit">Submit</button>
+    </form>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.7/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+    <script>
+      // Firebase App (the core Firebase SDK) is always required and must be listed first
+      import firebase from "firebase/app";
+      // If you are using v7 or any earlier version of the JS SDK, you should import firebase using namespace import
+      // import * as firebase from "firebase/app"
+          
+      // If you enabled Analytics in your project, add the Firebase SDK for Analytics
+      import "firebase/analytics";
+          
+      // Add the Firebase products that you want to use
+      import "firebase/auth";
+      import "firebase/firestore";
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyCzTVocJl1gxBxYdReInU8wrw9ADKl5JWU",
+        authDomain: "iterable-web-push-demo.firebaseapp.com",
+        projectId: "iterable-web-push-demo",
+        storageBucket: "iterable-web-push-demo.appspot.com",
+        messagingSenderId: "339010001859",
+        appId: "1:339010001859:web:f1e2105bb129618cbc7b76"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+
+      const messaging = firebase.messaging();
+      //   messaging.getToken({vapidKey: "AAAATu6SG8M:APA91bF2zk1I7nQ1a7BLOS0GCB-d0MGZgNvlQibu7Ny8zeoGbT_m4-4tfYd81ZlQLKCNuStyxZxVizqdueATbfwdmCNvypiIm6_rP_4fkm-1tskfsiST0eBfTSjIxUMhSKXsXiQAEOfI"});
+      // Get registration token. Initially this makes a network call, once retrieved
+      // subsequent calls to getToken will return from cache.
+      messaging.getToken({ vapidKey: 'BMCy6bwZdiKsAv9z9-G2dwlZ4cmgiRTc1Tg-J9ux4BI_T6SHMNSlJMa25aCpPZ9krTKCfFeiWHITsI2mDjRpaPU' }).then((currentToken) => {
+        if (currentToken) {
+          // Send the token to your server and update the UI if necessary
+          // ...
+        } else {
+          // Show permission request UI
+          console.log('No registration token available. Request permission to generate one.');
+          // ...
+        }
+      }).catch((err) => {
+        console.log('An error occurred while retrieving token. ', err);
+        // ...
+      });
+</script>
+  </body>
+</html>
